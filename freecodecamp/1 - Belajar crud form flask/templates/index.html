@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block app_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+{% endblock app_css %}
+
+{% block isi %}
+
+{% if mytugas|length < 1  %}
+<h4>Tidak ada data yang bisa ditampikan</h4>
+{% else %}
+    <table>
+
+        <tr>
+            <th>Tugas</th>
+            <th>Waktu ditambahkan</th>
+            <th>Aksi</th>
+        </tr>
+        {% for tugas in mytugas %}
+        <tr>
+            <td>{{ tugas.konten }}</td>
+            <td>{{ tugas.tanggal_dibuat.date() }}</td>
+            <td>
+                <a href="/edit/{{ tugas.idi }}">Edit</a>
+                <a href="/hapus/{{ tugas.idi }}">Hapus</a> <br>
+              
+            </td>
+        </tr>
+        
+        {% endfor %}
+        
+    </table>
+{% endif %}
+
+    <form action="/" method='POST'>
+        <input type="text" name="tugasharini" id="tugasharini">
+        <input type="submit" value='Tambah Tugas'>
+
+    </form>
+
+{% endblock isi %}

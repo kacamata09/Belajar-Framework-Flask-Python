@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block isi %}
+<form action="/edit/{{ konten.idi }}" method='POST'>
+    <input type="text" value='{{ konten.konten }}' name="tugasharini" id="tugasharini">
+    <input type="submit" value='Edit'>
+
+</form>
+{% endblock isi %}

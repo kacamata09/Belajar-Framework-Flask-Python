@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mahasiswa</title>
+</head>
+<body>
+
+    <div style='margin:auto; text-align:center'>
+        <h1>Daftar Mahasiswa Labu</h1>
+
+
+        <br>
+
+        <form action="{{ url_for('edit', nimma=konten.nimstring) }}" method='POST'>
+        <table style='margin:auto;text-align:left'>
+            <tr>
+                <td>
+                    <label for="nimmaha">NIM </label>
+                </td>
+                <td>
+                    <input type="text" name='nimmaha' value='{{ konten.nimstring }}' > <br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="namamaha", >Nama Mahasiswa</label>
+                </td>
+                <td>
+                    <input type="text" value='{{ konten.namamahasiswa }}' name='namamaha'> <br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="alamatmaha"  >Alamat</label>
+                </td>
+                <td>
+                    <input type="text" value='konten.alamat' name='alamatmaha'>
+                </td>
+            </tr>
+        </table>
+        <input type="submit" value='Edit'>
+    </form>
+    </div>
+    
+</body>
+</html>

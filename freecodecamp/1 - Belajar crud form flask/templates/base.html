@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{judul}}</title>
+    {% block app_css %}{% endblock app_css %}
+</head>
+<body>
+
+    <div style="margin:auto; text-align:center; width:700px ">
+
+        <div class="container">
+            {% block header %}
+            <h1>To do list</h1>
+            <h3>My to do list - by {{author}}</h3>
+            {% endblock header %}
+        </div>
+
+        <div>
+            {% block isi %}
+            
+            {% endblock isi %}
+        </div>
+
+
+    </div>
+
+
+    
+</body>
+</html>

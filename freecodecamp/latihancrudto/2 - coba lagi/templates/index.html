@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To do list crud</title>
+</head>
+<body>
+
+    <div style='text-align:center; margin: auto'>
+        <h1>MY TASK</h1>
+
+        <table border='1' cellpadding='5' cellspacing='0' style='text-align:center; margin:auto'>
+           
+            <tr>
+                <th>Task</th>
+                <th>Waktu</th>
+                <th>Aksi</th>
+            </tr>
+            {% for tugas in konten %}
+            <tr>
+                <td>{{tugas.namatugas}}</td>
+                <td>{{tugas.waktu_tugas.date()}}</td>
+                <td>
+                    <a href="{{ url_for('edit', nomor=tugas.nomortugas) }}">Edit</a>
+                    <a href="{{ url_for('hapus', nomor=tugas.nomortugas) }}">Hapus</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <br>
+        
+        <form action="/" method='POST'>
+            <input type="text" name='initugas'>
+            <input type="submit" value='Simpan'>
+        </form>
+    </div>
+
+
+    
+</body>
+</html>

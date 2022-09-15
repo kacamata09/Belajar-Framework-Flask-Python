@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h3>Ini adalah halaman pendaftaran</h3>
+{% endblock header %}
+
+
+{% block content %}
+
+<!-- ini form pendaftaran -->
+<div class="container" class='w-75 p-3 m-auto' >
+
+    <table class="table table-dark table-striped table-bordered border-secondary">
+        <thead>
+            <tr class='text-center'>
+                <th scope="col">Nomor</th>
+                <th scope="col">Nama Anak</th>
+                <th scope="col">Nama Ayah</th>
+                <th scope="col">Tanggal Masuk</th>
+                <th class='w-auto' scope="col">Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for anak in konten %}
+            <tr>
+                <th scope='row' class='text-center' >{{anak.id_anak}}</th>
+                <td>{{anak.nama_anak}}</td>
+                <td>{{anak.nama_ayah}}</td>
+                <td>{{anak.tanggal_bergabung.date()}}</td>
+                <td class='w-auto text-center'>
+                    <a href="{{ url_for('edit', id_anaktk=anak.id_anak) }}">
+                        <button type="submit" class="btn btn-danger">Edit</button>
+                    </a>
+                    <a href="{{ url_for('hapus', id_anaktk=anak.id_anak) }}">
+                        <button href-'' type="submit" class="btn btn-primary">Hapus</button>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+<div class="container" class='m-auto' >
+
+    <form class="row g-3 form-dark m-auto w-75" action='/pendaftaran/' method='POST' >
+
+        <div class="col-12">
+          <label for="inputAddress" class="form-label">Nama Anak Baru</label>
+          <input type="text" name='nama_anaktk' class="form-control" id="inputAddress" placeholder="Contoh : 'Si Ucup, Si Otong, etc'">
+        </div>
+        <div class="col-12">
+          <label for="inputAddress2" class="form-label">Nama Ayah</label>
+          <input type="text" class="form-control" name='nama_ayahtk' id="inputAddress2" placeholder="Contoh : 'Abdul, Ghafur, etc'">
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-dark">Simpan</button>
+        </div>
+      </form>
+
+</div>
+
+{% endblock content %}

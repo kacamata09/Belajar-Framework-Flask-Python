@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mahasiswa</title>
+</head>
+<body>
+
+    <div style='margin:auto; text-align:center'>
+        <h1>Daftar Mahasiswa Labu</h1>
+
+        <table border='1' cellspacing='0' cellpadding='5' style='margin:auto'>
+            <tr>
+                <th>NIM</th>
+                <th>Nama Mahasiswa</th>
+                <th>Alamat</th>
+                <th>Aksi</th>
+            </tr>
+            {% for mahasi in konten %}
+            
+            <tr>
+                <td>{{mahasi.nimstring}}</td>
+                <td>{{mahasi.namamahasiswa}}</td>
+                <td>{{mahasi.alamat}}</td>
+                <td>
+                    <a href="{{ url_for('edit', nimma=mahasi.nimstring) }}">Edit</a>
+                    <a href="{{ url_for('hapus', nimma=mahasi.nimstring) }}">Hapus</a>
+                </td>
+            </tr>
+            
+            {% endfor %}
+
+        </table>
+        <br>
+
+        <form action="/" method='POST'>
+        <table style='margin:auto;text-align:left'>
+            <tr>
+                <td>
+                    <label for="nimmaha">NIM </label>
+                </td>
+                <td>
+                    <input type="text" name='nimmaha'> <br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="namamaha">Nama Mahasiswa</label>
+                </td>
+                <td>
+                    <input type="text" name='namamaha'> <br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="alamatmaha">Alamat</label>
+                </td>
+                <td>
+                    <input type="text" name='alamatmaha'>
+                </td>
+            </tr>
+        </table>
+        <input type="submit" value='Tambah'>
+    </form>
+    </div>
+    
+</body>
+</html>

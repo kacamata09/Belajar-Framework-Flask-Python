@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>Edit Data Anak TK</h1>
+{% endblock header %}
+
+{% block content %}
+<div class="container" style='width: 600px;' >
+
+    <form class="row g-3 form-dark" action='{{ url_for('edit', id_anaktk=anak.id_anak) }}' method='POST' >
+
+        <div class="col-12">
+          <label for="inputAddress" class="form-label">Nama Anak Baru</label>
+          <input type="text" name='nama_anaktk' class="form-control" id="inputAddress" placeholder="Contoh : 'Si Ucup, Si Otong, etc'">
+        </div>
+        <div class="col-12">
+          <label for="inputAddress2" class="form-label">Nama Ayah</label>
+          <input type="text" class="form-control" name='nama_ayahtk' id="inputAddress2" placeholder="Contoh : 'Abdul, Ghafur, etc'">
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-dark">Simpan</button>
+        </div>
+      </form>
+
+</div>
+{% endblock content %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block app_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+{% endblock app_css %}
+
+{% block isi %}
+    <table>
+
+        <tr>
+            <th>Tugas</th>
+            <th>Waktu ditambahkan</th>
+            <th>Aksi</th>
+        </tr>
+        {% for tugas in isinyabro %}
+        <tr>
+            <td>{{ tugas.isitugas }}</td>
+            <td>{{ tugas.tanggal_buat.date() }}</td>
+            <td>
+                    <a href="">Edit</a> <br>
+                    <a href="">Hapus</a>
+              
+            </td>
+        </tr>
+        
+        {% endfor %}
+
+    </table>
+
+    <form action="/" method='POST'>
+        <input type="text" name="tugasharini" id="tugasharini">
+        <input type="submit" value='Tambah Tugas'>
+
+    </form>
+
+{% endblock isi %}
