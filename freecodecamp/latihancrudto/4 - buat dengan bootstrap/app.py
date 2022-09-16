@@ -5,6 +5,7 @@ from datetime import datetime
 app = Flask('nama aplikasi')
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:@localhost/testflask'
+app.config['SECRET_KEY'] = 'isi random string, apa ajalah, atau buat fungsi generator random secret key sendiri'
 dbku = SQLAlchemy(app)
 app.secret_key = 'adasdasdsadasfewtet'
 
