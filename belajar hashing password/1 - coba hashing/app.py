@@ -1,13 +1,15 @@
 from flask import Flask, render_template, redirect, request, url_for
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
-
+from flask_migrate import Migrate
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///dblatihan.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'isi random string, apa ajalah, atau buat fungsi generator random secret key sendiri'
 
 dbku = SQLAlchemy(app)
+migrate = Migrate(app, dbku)
 
 
 class Pengguna(dbku.Model):
@@ -18,13 +20,13 @@ class Pengguna(dbku.Model):
     
     @property
     def password(self):
-        raise AttributeError('Password tidak bisa dibaca')
+        raise AttributeError('Password tidak bisa dibaca karena sudah di hashing')
     
     @password.setter
     def password(self, password):
-        self.kataSandi = generate_password_hash(password)
+        self.kataSandi = generate_password_hash(password, 'sha256')
         
-    def verify_pasword(self, password):
+    def verify_password(self, password):
         return check_password_hash(self.kataSandi, password)
 
 @app.route('/')
@@ -41,7 +43,8 @@ def daftar_user():
         nama = request.form['namalengkap']
         username = request.form['username']
         password = request.form['password']
-        tambahPengguna = Pengguna(namaLengkap = nama, namaPengguna = username, kataSandi = password)
+        sandiHash = generate_password_hash(password, 'sha256')
+        tambahPengguna = Pengguna(namaLengkap = nama, namaPengguna = username, kataSandi = sandiHash)
         try:
             dbku.session.add(tambahPengguna)
             dbku.session.commit()
@@ -51,6 +54,11 @@ def daftar_user():
         
         
     return render_template('daftaruser.html')
+
+@app.route('/datauser/')
+def data_user():
+    tampilkan = Pengguna.query.all()
+    return render_template('datauser.html', konten=tampilkan)
     
 if __name__ == '__main__':
     app.run(debug=True)

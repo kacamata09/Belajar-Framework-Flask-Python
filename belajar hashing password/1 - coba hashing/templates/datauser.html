@@ -19,31 +19,33 @@
                 <h1>Youkoso Boukenshatachi</h1>
                 <div class="form-text" style='font-size:27px'>
                   ようこそ冒険者たち</div>
-              </div class='row'>
-                <form action='/daftar' method='POST' >
-                    <div class="mb-3">
-                      <label for="namalengkap" class="form-label">Nama Lengkap</label>
-                      <input type="text" class="form-control" name='namalengkap' >
-                      <div class="form-text">Masukkan nama lengkap anda untuk ditampilkan pada halaman dashboard kalau dashboardnya ada wkwk, karena kemungkinan cuma latihan hashing ini mah</div>
-                    </div>
-                    <div class="mb-3">
-                      <label for="username" class="form-label">Username</label>
-                      <input type="text" class="form-control" name='username'>
-                      <div class="form-text">Usahakan username anda agak pendek agar mudah anda ingat atau hafal</div>
-                    </div>
-                    <div class="mb-3">
-                      <label for="password" class="form-label">Password</label>
-                      <input type="password" class="form-control" name='password'>
-                    </div>
-                    <div class="mb-3">
-                      <label for="password1" class="form-label">Password</label>
-                      <input type="password" class="form-control" name='password1'>
-                    </div>
-                    <button type="submit" class="btn btn-dark">Submit</button>
-                  </form>
-            
+              </div>
+              
             </div>
         </div>
+
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <table class='table table-dark table-striped text-center text-wrap border-secondary'>
+                    <thead>
+                        <tr>
+                            <th scope="col">Username</th>
+                            <th scope="col">Nama Lengkap</th>
+                            <th scope="col">Password Hashing</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for pengguna in konten %}
+                        <tr>
+                            <td>{{pengguna.namaPengguna}}</td>
+                            <td>{{pengguna.namaLengkap}}</td>
+                            <td class='text-wrap'>{{pengguna.kataSandi}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+          </div>
     </div>
     <!-- Optional JavaScript; choose one of the two! -->
 
